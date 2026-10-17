@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cybear Security Scanner</title>
+<style>
+body{background:#071322;color:#fff;font-family:Arial,sans-serif;padding:20px}
+main{max-width:600px;margin:auto}
+input,button{padding:14px;width:100%;margin:10px 0;box-sizing:border-box;border-radius:8px}
+button{background:#55dfcc;font-weight:bold}
+section{background:#10233b;padding:16px;border-radius:10px}
+</style>
+</head>
+<body>
+<main>
+<h2>🛡️ CYBEAR Security Bangladesh</h2>
+<section>
+<h3>Website Security Scanner</h3>
+<p>নিজের বা অনুমোদিত ওয়েবসাইটের ঠিকানা লিখুন।</p>
+<input id="site" type="url" placeholder="https://example.com">
+<button onclick="scan()">পরীক্ষা শুরু করুন</button>
+<div id="result">এখানে ফলাফল দেখা যাবে।</div>
+</section>
+</main>
+<script>
+function scan(){
+ const value=document.getElementById('site').value.trim();
+ const result=document.getElementById('result');
+ try{
+  const u=new URL(value);
+  if(!['http:','https:'].includes(u.protocol)) throw Error();
+  result.textContent='ঠিকানা: '+u.hostname+
+   ' | HTTPS: '+(u.protocol==='https:'?'ব্যবহৃত':'ব্যবহৃত নয়')+
+   '. এটি শুধু ঠিকানা যাচাই করে; বাস্তব দুর্বলতা স্ক্যান করে না।';
+ }catch(e){
+  result.textContent='সঠিক ওয়েব ঠিকানা লিখুন, যেমন https://example.com';
+ }
+}
+</script>
+</body>
+</html>
